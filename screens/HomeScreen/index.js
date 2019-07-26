@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Text, View } from "react-native";
 import styles from "./_style";
 
-class Home extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     title: "Sada-e-Madina"
   };
@@ -17,4 +17,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default HomeScreen;

@@ -1,11 +1,11 @@
 import React from "react";
-import Home from "./pages/Home/Home";
-import Dial from "./pages/Dial/Dial";
+import HomeScreen from "./screens/HomeScreen";
+import DialScreen from "./screens/DialScreen";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const MainNavigator = createStackNavigator({
-  Home: { screen: Home },
-  Dial: { screen: Dial }
+  HomeScren: { screen: HomeScreen },
+  DialScreen: { screen: DialScreen }
 });
 
 const App = createAppContainer(MainNavigator);
