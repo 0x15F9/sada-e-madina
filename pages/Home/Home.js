@@ -1,12 +1,20 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { Button, Text, View } from "react-native";
 import styles from "./_style";
 
-const Home = () => (
-  <View style={styles.container}>
-    <Text>Sada-e-Madina</Text>
-    <Button title="Call" />
-  </View>
-);
+class Home extends React.Component {
+  static navigationOptions = {
+    title: "Sada-e-Madina"
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.container}>
+        <Text>Sada-e-Madina</Text>
+        <Button title="Dial" onPress={() => navigate("Dial")} />
+      </View>
+    );
+  }
+}
 
 export default Home;

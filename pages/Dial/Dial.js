@@ -4,7 +4,8 @@ import styles from "./_style";
 
 const Dial = () => (
   <View style={styles.container}>
-    <Text>Call</Text>
+    <Text>Contacts + check box</Text>
+    <Button title="Dial" />
   </View>
 );
 
