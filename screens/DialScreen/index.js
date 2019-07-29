@@ -104,7 +104,7 @@ class DialScreen extends React.Component {
                 )
               }
               bottomDivider={true}
-              onPress={() => this.onItemSelected(id)}
+              onPress={() => this.onItemSelected(contact.id)}
             />
           ))
         ) : (
