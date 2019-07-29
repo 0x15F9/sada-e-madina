@@ -1,12 +1,22 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import * as _Contacts from "expo-contacts";
 import styles from "./_style";
 import { getContacts } from "./_helpers";
-import { ListItem, CheckBox } from "react-native-elements";
+import {
+  ListItem,
+  CheckBox,
+  Icon,
+  ButtonGroup,
+  Button
+} from "react-native-elements";
 
 class DialScreen extends React.Component {
-  state = { contacts: [] };
+  constructor() {
+    super();
+    this.state = { contacts: [], layout: "dial" };
+    this.onCallingScreenButtonsPressed.bind(this);
+  }
 
   onItemSelected = id => {
     this.setState({
@@ -19,7 +29,34 @@ class DialScreen extends React.Component {
   };
 
   onDialPressed = () => {
-    console.log(this.state.contacts.filter(contact => contact.selected));
+    // Change layout to calling: icons change to cross, check, or alert
+    this.setState({
+      contacts: this.state.contacts
+        .filter(contact => contact.selected)
+        .map(contact => ({ ...contact, state: "Not yet called" })),
+      layout: "dialling"
+    });
+  };
+
+  togglePauseContinue = () => {
+    console.log("pause");
+  };
+  onContinuePressed = () => {
+    console.log("continue");
+  };
+
+  onCallingScreenButtonsPressed = selectedIndex => {
+    switch (selectedIndex) {
+      case 0:
+        this.togglePauseContinue();
+        break;
+      case 1:
+        this.onStopPressed();
+        break;
+
+      default:
+        break;
+    }
   };
 
   componentDidMount() {
@@ -46,19 +83,25 @@ class DialScreen extends React.Component {
   }
 
   render() {
+    const buttons = ["Pause", "Cancel"];
     return (
       <View style={styles.container}>
         {this.state.contacts ? (
-          this.state.contacts.map(({ id, name, phoneNumber, selected }) => (
+          this.state.contacts.map(contact => (
             <ListItem
-              key={id}
-              title={name}
-              subtitle={phoneNumber}
+              key={contact.id}
+              title={contact.name}
+              subtitle={contact.phoneNumber}
               rightElement={
-                <CheckBox
-                  checked={selected}
-                  onPress={() => this.onItemSelected(id)}
-                />
+                this.state.layout === "dial" ? (
+                  <CheckBox
+                    checked={contact.selected}
+                    onPress={() => this.onItemSelected(contact.id)}
+                  />
+                ) : (
+                  // states: 0: going to call, 1: calling, 2: rejected/answered, 3: not replied
+                  <Text>{contact.state}</Text>
+                )
               }
               bottomDivider={true}
               onPress={() => this.onItemSelected(id)}
@@ -67,8 +110,15 @@ class DialScreen extends React.Component {
         ) : (
           <Text>Loading...</Text>
         )}
-
-        <Button title="Dial" onPress={this.onDialPressed} />
+        {this.state.layout === "dial" ? (
+          <Button title="Dial" onPress={this.onDialPressed} />
+        ) : (
+          <ButtonGroup
+            onPress={this.onCallingScreenButtonsPressed}
+            buttons={buttons}
+            containerStyle={{ height: 100 }}
+          />
+        )}
       </View>
     );
   }
