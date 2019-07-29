@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import * as _Contacts from "expo-contacts";
 import styles from "./_style";
 import { getContacts } from "./_helpers";
-import { ListItem, CheckBox } from "react-native-elements";
+import { ListItem, CheckBox, Button } from "react-native-elements";
 
 class DialScreen extends React.Component {
   state = { contacts: [] };
@@ -16,10 +16,6 @@ class DialScreen extends React.Component {
           : contact
       )
     });
-  };
-
-  onDialPressed = () => {
-    console.log(this.state.contacts.filter(contact => contact.selected));
   };
 
   componentDidMount() {
@@ -46,6 +42,7 @@ class DialScreen extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         {this.state.contacts ? (
@@ -68,7 +65,14 @@ class DialScreen extends React.Component {
           <Text>Loading...</Text>
         )}
 
-        <Button title="Dial" onPress={this.onDialPressed} />
+        <Button
+          title="Dial"
+          onPress={() =>
+            navigate("CallScreen", {
+              callList: this.state.contacts.filter(contact => contact.selected)
+            })
+          }
+        />
       </View>
     );
   }

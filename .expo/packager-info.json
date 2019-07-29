@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 22204,
-  "expoServerNgrokUrl": "https://t9-idx.anonymous.sada-e-madina.exp.direct",
-  "packagerNgrokUrl": "https://packager.t9-idx.anonymous.sada-e-madina.exp.direct",
-  "ngrokPid": 22239
+  "packagerPort": 19005,
+  "packagerPid": 8123,
+  "expoServerNgrokUrl": "https://9f-n2t.isfaaq.sada-e-madina.exp.direct",
+  "packagerNgrokUrl": "https://packager.9f-n2t.isfaaq.sada-e-madina.exp.direct",
+  "ngrokPid": 5606
 }
