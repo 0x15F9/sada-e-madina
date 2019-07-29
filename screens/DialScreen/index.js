@@ -43,6 +43,14 @@ class DialScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+
+    onDialPressed = () => {
+      const callList = this.state.contacts.filter(contact => contact.selected);
+      callList.length > 0
+        ? navigate("CallScreen", { callList })
+        : console.log("Select a contact");
+    };
+
     return (
       <View style={styles.container}>
         {this.state.contacts ? (
@@ -65,14 +73,7 @@ class DialScreen extends React.Component {
           <Text>Loading...</Text>
         )}
 
-        <Button
-          title="Dial"
-          onPress={() =>
-            navigate("CallScreen", {
-              callList: this.state.contacts.filter(contact => contact.selected)
-            })
-          }
-        />
+        <Button title="Dial" onPress={() => onDialPressed()} />
       </View>
     );
   }
