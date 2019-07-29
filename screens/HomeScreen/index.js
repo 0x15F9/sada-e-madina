@@ -10,8 +10,8 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>Sada-e-Madina</Text>
-        <Button title="Dial" onPress={() => navigate("Dial")} />
+        <Text> Sada - e - Madina </Text>
+        <Button title="Dial" onPress={() => navigate("DialScreen")} />
       </View>
     );
   }
