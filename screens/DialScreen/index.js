@@ -41,8 +41,8 @@ class DialScreen extends React.Component {
   togglePauseContinue = () => {
     console.log("pause");
   };
-  onContinuePressed = () => {
-    console.log("continue");
+  onStopPressed = () => {
+    console.log("stop");
   };
 
   onCallingScreenButtonsPressed = selectedIndex => {
