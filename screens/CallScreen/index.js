@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, ProgressViewIOS } from "react-native";
+import { View, Text, ProgressViewIOS, Linking } from "react-native";
 class CallScreen extends Component {
   state = { progress: 0 };
   componentWillMount() {
